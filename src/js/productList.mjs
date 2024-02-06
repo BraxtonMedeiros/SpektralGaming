@@ -13,22 +13,14 @@ function productCardTemplate(product) {
       <p class="product-card__price">$${product.FinalPrice}</p></a>
     </li>`;
   }
-function renderList(product) {
-    productCardTemplate()
-    document.querySelector("#card__brand").innerText = product.Brand.Name;
-    document.querySelector("#card__name").innerText = product.NameWithoutBrand;
-    document.querySelector("#productImage").src = product.Image;
-    document.querySelector("#productImage").alt = product.Name;
-    document.querySelector("#product-card__price").innerText = `$${product.FinalPrice}`;
-}
 
 export default async function productList(selector, category){
-    // get the element we will insert the list into from the selector
-    const element = document.querySelector(selector);
-    // get the list of products 
-    const products = await getData(category);
-    // render out the product list to the element
-    renderListWithTemplate(productCardTemplate, element, products);
-
-    
+  // get the element we will insert the list into from the selector
+  const element = document.querySelector(selector);
+  // get the list of products 
+  const products = await getData(category);
+  // Take only the first 4 products
+  const firstFourProducts = products.slice(0, 4);
+  // render out the product list to the element
+  renderListWithTemplate(productCardTemplate, element, firstFourProducts);
 }
