@@ -165,7 +165,15 @@ button {
 .product-detail img {
   width: 100%;
 }
-
+.product-card__discount {
+  color: red;
+  display:inline;
+  float:right;
+}
+#SuggestedRetailPrice {
+  color: red;
+  text-decoration: line-through
+}
 /* Start cart list card styles */
 .cart-card {
   display: grid;

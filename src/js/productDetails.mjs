@@ -27,7 +27,7 @@ function renderProductDetails() {
   document.querySelector("#productImage").src = product.Image;
   document.querySelector("#productImage").alt = product.Name;
   document.querySelector("#SuggestedRetailPrice").innerText = `$${product.SuggestedRetailPrice}`;
-  document.querySelector("#productFinalPrice").innerText = `$${product.FinalPrice}`;
+  document.querySelector("#productFinalPrice").innerText = `Now $${product.FinalPrice}`;
   document.querySelector("#productDiscount").innerText = discountElement.textContent;
   document.querySelector("#productColorName").innerText = product.Colors[0].ColorName;
   document.querySelector("#productDescriptionHtmlSimple").innerHTML = product.DescriptionHtmlSimple;
