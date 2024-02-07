@@ -17,36 +17,26 @@ function addToCart() {
 }
 
 function renderProductDetails() {
+  // Calculate and display discount
+  const discount = calculateDiscount(product.SuggestedRetailPrice, product.FinalPrice);
+  const discountElement = document.createElement("p");
+  discountElement.id = "productDiscount";
+  discountElement.textContent = `${discount}% OFF!`;
   document.querySelector("#productName").innerText = product.Brand.Name;
   document.querySelector("#productNameWithoutBrand").innerText = product.NameWithoutBrand;
   document.querySelector("#productImage").src = product.Image;
   document.querySelector("#productImage").alt = product.Name;
+  document.querySelector("#SuggestedRetailPrice").innerText = `$${product.SuggestedRetailPrice}`;
   document.querySelector("#productFinalPrice").innerText = `$${product.FinalPrice}`;
-
-  // Calculate and display discount
-  const discount = calculateDiscount(product.SuggestedRetailPrice, product.FinalPrice);
-
-  const discountElement = document.createElement("p");
-  discountElement.id = "productDiscount";
-  discountElement.textContent = `${discount}% OFF!`;
-
-  // Create a container div and append both price and discount to it
-  const containerDiv = document.createElement("div");
-  containerDiv.appendChild(document.querySelector("#productFinalPrice"));
-  containerDiv.appendChild(discountElement);
-
-  // Append the container div to .product-detail
-  document.querySelector(".product-detail").appendChild(containerDiv);
-
+  document.querySelector("#productDiscount").innerText = discountElement.textContent;
   document.querySelector("#productColorName").innerText = product.Colors[0].ColorName;
   document.querySelector("#productDescriptionHtmlSimple").innerHTML = product.DescriptionHtmlSimple;
-
   document.querySelector("#addToCart").dataset.id = product.Id;
 }
 
 function calculateDiscount(listedPrice, finalPrice) {
   // Parse input values as numbers
-  const originalPrice = parseFloat(listedPrice) * (1 + 15 / 100); // Assuming 15% off already
+  const originalPrice = parseFloat(listedPrice)
   const discount = ((originalPrice - parseFloat(finalPrice)) / originalPrice) * 100;
 
   // Check for NaN or Infinity
@@ -54,5 +44,6 @@ function calculateDiscount(listedPrice, finalPrice) {
     return 0; // Return 0% discount in case of invalid values
   }
 
-  return discount.toFixed(1); // Round to one decimal place
+
+  return discount.toFixed(0); // Round to one decimal place
 }
