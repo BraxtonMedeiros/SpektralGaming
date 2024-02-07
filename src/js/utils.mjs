@@ -49,3 +49,19 @@ export function renderListWithTemplate(
   const htmlString = list.map(templateFn);
   parentElement.insertAdjacentHTML(position, htmlString.join(""));
 }
+
+export function cartsuperscript(cartitemcount) {
+  if (cartitemcount > 0){
+    const element = document.querySelector(".item-count");
+    element.innerHTML = cartitemcount;
+    // Assign styles to the element
+    element.style.position = "absolute";
+    element.style.top = "10px";
+    element.style.right = "-9px";
+    element.style.backgroundColor = "var(--primary-color)";
+    element.style.borderRadius = "50%";
+    element.style.padding = "3px 6px";
+    element.style.fontSize = "12px";
+  }
+
+}
