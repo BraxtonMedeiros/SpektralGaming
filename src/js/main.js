@@ -7,5 +7,6 @@ async function init() {
   await renderAlerts(); // Render alerts before rendering product list
   productList(".product-list", "tents");
   cartsuperscript(); // Call cartsuperscript after productList
+  loadHeaderFooter()
 }
 init();
