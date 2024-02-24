@@ -1,5 +1,3 @@
-import { doc } from "prettier";
-
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
@@ -7,20 +5,14 @@ export function qs(selector, parent = document) {
 // or a more concise version if you are into that sort of thing:
 // export const qs = (selector, parent = document) => parent.querySelector(selector);
 
-// Retrieve data from localStorage
+// retrieve data from localstorage
 export function getLocalStorage(key) {
-  const data = localStorage.getItem(key);
-  // Parse JSON data if it exists, otherwise return null
-  return data ? JSON.parse(data) : null;
+  return JSON.parse(localStorage.getItem(key));
 }
-
-// Save data to localStorage
-export function setLocalStorage(key, newData) {
-  let existingData = getLocalStorage(key) || []; // Get existing data or initialize an empty array
-  existingData.push(newData); // Add the new data to the existing array
-  localStorage.setItem(key, JSON.stringify(existingData)); // Save the updated array to localStorage
+// save data to local storage
+export function setLocalStorage(key, data) {
+  localStorage.setItem(key, JSON.stringify(data));
 }
-
 // set a listener for both touchend and click
 export function setClick(selector, callback) {
   qs(selector).addEventListener("touchend", (event) => {
@@ -33,9 +25,7 @@ export function setClick(selector, callback) {
 export function getParam(param) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  const product = urlParams.get(param);
-
-  return(product);
+  return urlParams.get(param);
 }
 
 export function renderListWithTemplate(
@@ -50,22 +40,6 @@ export function renderListWithTemplate(
   }
   const htmlString = list.map(templateFn);
   parentElement.insertAdjacentHTML(position, htmlString.join(""));
-}
-
-export function cartsuperscript(cartitemcount) {
-  if (cartitemcount > 0){
-    const element = document.querySelector(".item-count");
-    element.innerHTML = cartitemcount;
-    // Assign styles to the element
-    element.style.position = "absolute";
-    element.style.top = "10px";
-    element.style.right = "-9px";
-    element.style.backgroundColor = "var(--primary-color)";
-    element.style.borderRadius = "50%";
-    element.style.padding = "3px 6px";
-    element.style.fontSize = "12px";
-  }
-
 }
 
 export async function renderWithTemplate(
@@ -86,24 +60,25 @@ export async function renderWithTemplate(
   }
 }
 
-
 function loadTemplate(path) {
-  // wait what?  we are returning a new function? 
-  // this is called currying and can be very helpful.
+  // wait what?  we are returning a new function? this is called currying and can be very helpful.
   return async function () {
-      const res = await fetch(path);
-      if (res.ok) {
+    const res = await fetch(path);
+    if (res.ok) {
       const html = await res.text();
       return html;
-      }
+    }
   };
-} 
+}
 
 export async function loadHeaderFooter() {
-  const header = document.querySelector("#main-header");
-  const footer = document.querySelector("#main-footer");
+  // header template will still be a function! But one where we have pre-supplied the argument.
+  // headerTemplate and footerTemplate will be almost identical, but they will remember the path we passed in when we created them
+  // why is it important that they stay functions?  The renderWithTemplate function is expecting a template function...if we sent it a string it would break, if we changed it to expect a string then it would become less flexible.
   const headerTemplateFn = loadTemplate("/partials/header.html");
   const footerTemplateFn = loadTemplate("/partials/footer.html");
-  renderWithTemplate(headerTemplateFn, header);
-  renderWithTemplate(footerTemplateFn, footer);
+  const headerEl = document.querySelector("#main-header");
+  const footerEl = document.querySelector("#main-footer");
+  renderWithTemplate(headerTemplateFn, headerEl);
+  renderWithTemplate(footerTemplateFn, footerEl);
 }

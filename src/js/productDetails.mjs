@@ -1,5 +1,5 @@
 import { findProductById } from "./productData.mjs";
-import { setLocalStorage } from "./utils.mjs";
+import { setLocalStorage, getLocalStorage  } from "./utils.mjs";
 
 let product = {};
 
@@ -11,9 +11,15 @@ export default async function productDetails(productId) {
   // once the HTML is rendered we can add a listener to Add to Cart button
   document.getElementById("addToCart").addEventListener("click", addToCart);
 }
-
 function addToCart() {
-  setLocalStorage("so-cart", product);
+  let cartContents = getLocalStorage("so-cart");
+  //check to see if there was anything there
+  if (cartContents == null) {
+    cartContents = [];
+  }
+  // then add the current product to the list
+  cartContents.push(product);
+  setLocalStorage("so-cart", cartContents);
 }
 
 function renderProductDetails() {
@@ -43,7 +49,5 @@ function calculateDiscount(listedPrice, finalPrice) {
   if (isNaN(discount) || !isFinite(discount)) {
     return 0; // Return 0% discount in case of invalid values
   }
-
-
   return discount.toFixed(0); // Round to one decimal place
 }
