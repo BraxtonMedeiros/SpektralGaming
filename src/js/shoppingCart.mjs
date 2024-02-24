@@ -11,10 +11,10 @@ export default function shoppingCart() {
 function displayCartTotal(total) {
   if (total > 0) {
     // show our checkout button and total if there are items in the cart.
-    document.querySelector(".list-footer").classList.remove("hide");
-    document.querySelector(".list-total").innerText += ` $${total}`;
+    document.querySelector(".cart-footer").classList.remove("hide");
+    document.querySelector(".cart-total").innerText += ` $${total}`;
   } else {
-    document.querySelector(".list-footer").classList.add("hide");
+    document.querySelector(".cart-footer").classList.add("hide");
   }
 }
 function cartItemTemplate(item) {

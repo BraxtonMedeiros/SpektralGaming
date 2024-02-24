@@ -110,6 +110,10 @@ button {
   fill: gray;
 }
 
+.hide {
+  display: none;
+}
+
 /* End cart icon styles */
 
 
@@ -209,6 +213,33 @@ button {
   color: red;
   text-decoration: line-through
 }
+
+/* checkout styles */
+.checkout-form {
+  padding: 0.5em;
+}
+.checkout-form label {
+  display: block;
+}
+.checkout-form input {
+  width: 100%;
+  font-size: 1.2em;
+}
+ 
+.checkout-summary > ul {
+  padding-left: 0;
+  list-style-type: none;
+}
+.checkout-summary li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.checkout-summary input {
+  width: 25%;
+  font-size: 1em;
+}
+
 /* Start cart list card styles */
 .cart-card {
   display: grid;
