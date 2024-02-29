@@ -1,3 +1,6 @@
+import { findProductById } from "./productData.mjs";
+import productDetails from "./productDetails.mjs";
+import productList from "./productList.mjs";
 import { getLocalStorage, renderListWithTemplate } from "./utils.mjs";
 
 export default function shoppingCart() {
@@ -6,6 +9,29 @@ export default function shoppingCart() {
   renderListWithTemplate(cartItemTemplate, outputEl, cartItems);
   const total = calculateListTotal(cartItems);
   displayCartTotal(total);
+
+  // Add event listener to each remove button
+  const removeButtons = document.querySelectorAll("#remove");
+  removeButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      const itemId = button.dataset.id;
+      removeFromCart(itemId);
+    });
+  });
+}
+
+function removeFromCart(itemId) {
+  let cartItems = getLocalStorage("so-cart");
+  // Find index of item with given id
+  const index = cartItems.findIndex(item => item.Id === itemId);
+  if (index !== -1) {
+    // Remove item from array
+    cartItems.splice(index, 1);
+    // Update local storage
+    localStorage.setItem("so-cart", JSON.stringify(cartItems));
+    // Re-render cart
+    shoppingCart();
+  }
 }
 
 function displayCartTotal(total) {
@@ -31,6 +57,7 @@ function cartItemTemplate(item) {
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
   <p class="cart-card__quantity">qty: 1</p>
   <p class="cart-card__price">$${item.FinalPrice}</p>
+  <button id="remove" data-id="${item.Id}">X</button>
 </li>`;
 
   return newItem;
