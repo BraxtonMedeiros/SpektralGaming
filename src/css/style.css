@@ -276,6 +276,13 @@ button {
   grid-column: 3;
 }
 
+/* Removal button cart */
+
+#remove {
+  background-color: red;
+  grid-column: right;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
