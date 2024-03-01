@@ -1,16 +1,18 @@
 const baseURL = import.meta.env.VITE_SERVER_URLS;
-function convertToJson(res) {
+
+async function convertToJson(res) {
+  const jsonResponse = await res.json();
   if (res.ok) {
-    return res.json();
-  } else {
-    throw new Error("Bad Response");
+    return jsonResponse;
+  } 
+  else {
+    throw { name: "servicesError", message: jsonResponse };
   }
 }
 
 export async function getData(category) {
   const response = await fetch(baseURL + `products/search/${category}`);
   const data = await convertToJson(response);
-  console.log(data);
   return data.Result;
 }
 
@@ -29,5 +31,5 @@ export async function checkout(payload) {
     },
     body: JSON.stringify(payload),
   };
-  return await fetch(baseURL + "checkout/", options).then(convertToJson)
+  return await fetch(baseURL + "checkout", options).then(convertToJson)
 }
