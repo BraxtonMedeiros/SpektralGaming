@@ -13,8 +13,9 @@ export default async function productDetails(productId) {
 }
 function addToCart() {
   let cartContents = getLocalStorage("so-cart");
-  //check to see if there was anything there
-  if (cartContents == null) {
+  // Check if cartContents is not an array or null
+  if (!Array.isArray(cartContents) || cartContents === null) {
+    // Initialize cartContents as an empty array
     cartContents = [];
   }
   // then add the current product to the list
