@@ -46,10 +46,9 @@ export async function renderWithTemplate(
   parentElement,
   data,
   callback,
-  position = "afterbegin",
-  clear = true
+  position = "afterbegin"
 ) {
-  if (clear) {
+  if (parentElement != null) {
     parentElement.innerHTML = "";
   }
   const htmlString = await templateFn(data);
