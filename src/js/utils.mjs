@@ -32,10 +32,9 @@ export function renderListWithTemplate(
   templateFn,
   parentElement,
   list,
-  position = "afterbegin",
-  clear = true
+  position = "afterbegin"
 ) {
-  if (clear) {
+  if (parentElement != null) {
     parentElement.innerHTML = "";
   }
   const htmlString = list.map(templateFn);
