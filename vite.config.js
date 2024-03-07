@@ -17,7 +17,8 @@ export default defineConfig({
         partials_header: resolve(__dirname, "src/partials/header.html"),
         partials_footer: resolve(__dirname, "src/partials/footer.html"),
         checkout_success: resolve(__dirname, "src/checkout/success.html"),
-        
+        orders: resolve(__dirname, "src/orders/index.html"),
+        login: resolve(__dirname, "src/login/index.html"),
       },
     },
   },
