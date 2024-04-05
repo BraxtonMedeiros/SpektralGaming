@@ -1,6 +1,6 @@
 import { loginRequest } from "./productData.mjs";
 import { alertMessage, getLocalStorage, setLocalStorage } from "./utils.mjs";
-import * as jwt_decode from "jwt-decode";
+import jwt_decode from "jwt-decode";
 
 const tokenKey = "so-token";
 
