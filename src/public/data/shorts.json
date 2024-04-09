@@ -1,0 +1,32 @@
+{
+    "shorts": [
+      {
+        "category": "shorts",
+        "id": 13,
+        "name": "White Shorts with Spektral Logo",
+        "price": 17.99,
+        "img": "/images/shorts/white_shorts_logo.png"
+      },
+      {
+        "category": "shorts",
+        "id": 14,
+        "name": "White Shorts with Spektral banner",
+        "price": 19.99,
+        "img": "/images/shorts/white_shorts_banner.png"
+      },
+      {
+        "category": "shorts",
+        "id": 15,
+        "name": "Black Shorts with Spektral Logo",
+        "price": 17.99,
+        "img": "/images/shorts/black_shorts_logo.png"
+      },
+      {
+        "category": "shorts",
+        "id": 16,
+        "name": "Black Shorts with Spektral Banner",
+        "price": 19.99,
+        "img": "/images/shorts/black_shorts_banner.png"
+      }
+    ]
+  }

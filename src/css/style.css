@@ -2,7 +2,7 @@
   --font-body: Arial, Helvetica, sans-serif;
   --font-headline: Haettenschweiler, "Arial Narrow Bold", sans-serif;
   /* colors */
-  --primary-color: #f0a868;
+  --primary-color: black;
   --secondary-color: #525b0f;
   --tertiary-color: #a4b8c4;
   --light-grey: #d0d0d0;
@@ -26,16 +26,20 @@ img {
   max-width: 100%;
 }
 header {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   justify-content: space-between;
   padding: 0 10px;
+}
+#orders {
+  padding: 0;
 }
 .logo {
   line-height: 60px;
   width: 245px;
   overflow: hidden;
   display: flex;
-  font-size: 30px;
+  font-size: 26px;
   text-align: right;
   font-family: var(--font-headline);
 }
@@ -48,7 +52,11 @@ header {
   color: var(--font-body);
 }
 .hero {
+  display: flex;
   position: relative;
+  justify-content: center; /* Horizontally center the items */
+  align-items: center; /* Vertically center the items */
+  margin-bottom: 20px; /* Adjust as needed */
 }
 .hero .logo {
   position: absolute;
@@ -69,9 +77,8 @@ header {
   line-height: 1;
 }
 .logo--square img {
-  width: 90px;
-  height: 90px;
-  margin-top: -1.3em;
+  width: 100%;
+  height: 100%;
 }
 .logo--square > div {
   margin-top: -1.7em;
@@ -98,15 +105,21 @@ button {
 
 /* Cart icon styles */
 .cart {
-  padding-top: 1em;
+  padding: 0px 40px 0px 0px;
   position: relative;
   text-align: center;
+  grid-column: 6/7;
+  grid-row: 2/3;
+}
+.orders-link {
+  grid-column: 6/7;
 }
 
-.cart svg {
+.cart-icon svg {
   width: 25px;
+  grid-column: 6/7;
 }
-.cart:hover svg {
+.cart .cart:hover svg {
   fill: gray;
 }
 
@@ -289,11 +302,36 @@ button {
   align-items: center;
   justify-content: space-between;
   padding: 0.5em;
+  color: white;
   background-color: var(--primary-color);
-  border: 1px solid darkorange;
+  border: 1px solid white;
 }
 .alert > p {
   margin: 0;
+}
+
+footer {
+    margin-top: 20px;
+    padding: 25px 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+footer h3 {
+    color: black;
+    font-size: 100%;
+}
+footer a {
+    color: white;
+    text-decoration: none;
+}
+#discord {
+    width: 64px;
+    height: 64px;
+}
+
+.social {
+  padding-left: 150px;
 }
 
 @media screen and (min-width: 500px) {

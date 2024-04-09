@@ -2,7 +2,7 @@ export async function renderAlerts() {
     const alertsResponse = await fetch("./json/alerts.json");
     const alerts = await alertsResponse.json();
   
-    if (alerts.length > 0) {
+    if (alerts.length < 0) {
       const alertList = document.createElement("section");
       alertList.classList.add("alert-list");
   

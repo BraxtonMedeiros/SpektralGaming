@@ -1,6 +1,3 @@
-import { findProductById } from "./productData.mjs";
-import productDetails from "./productDetails.mjs";
-import productList from "./productList.mjs";
 import { getLocalStorage, renderListWithTemplate } from "./utils.mjs";
 
 export default function shoppingCart() {
@@ -9,21 +6,12 @@ export default function shoppingCart() {
   renderListWithTemplate(cartItemTemplate, outputEl, cartItems);
   const total = calculateListTotal(cartItems);
   displayCartTotal(total);
-
-  // Add event listener to each remove button
-  const removeButtons = document.querySelectorAll("#remove");
-  removeButtons.forEach(button => {
-    button.addEventListener("click", () => {
-      const itemId = button.dataset.id;
-      removeFromCart(itemId);
-    });
-  });
 }
 
 function removeFromCart(itemId) {
   let cartItems = getLocalStorage("so-cart");
   // Find index of item with given id
-  const index = cartItems.findIndex(item => item.Id === itemId);
+  const index = cartItems.findIndex(item => item.id == itemId);
   if (index !== -1) {
     // Remove item from array
     cartItems.splice(index, 1);
@@ -38,33 +26,45 @@ function displayCartTotal(total) {
   if (total > 0) {
     // show our checkout button and total if there are items in the cart.
     document.querySelector(".cart-footer").classList.remove("hide");
-    document.querySelector(".cart-total").innerText += ` $${total}`;
+    // Clear previous total before updating
+    document.querySelector(".cart-total").innerText = "Total: ";
+    // Format total with maximum of two decimal places
+    const formattedTotal = total.toFixed(2);
+    document.querySelector(".cart-total").innerText += ` $${formattedTotal}`;
   } else {
     document.querySelector(".cart-footer").classList.add("hide");
   }
 }
+
 function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
     <img
-      src="${item.Images.PrimaryMedium}"
-      alt="${item.Name}"
+      src="${item.img}"
+      alt="${item.name}"
     />
   </a>
   <a href="#">
-    <h2 class="card__name">${item.Name}</h2>
+    <h2 class="card__name">${item.name}</h2>
   </a>
-  <p class="cart-card__color">${item.Colors[0].ColorName}</p>
   <p class="cart-card__quantity">qty: 1</p>
-  <p class="cart-card__price">$${item.FinalPrice}</p>
-  <button id="remove" data-id="${item.Id}">X</button>
+  <p class="cart-card__price">$${item.price}</p>
+  <button class="remove" data-id="${item.id}">X</button>
 </li>`;
 
   return newItem;
 }
 
 function calculateListTotal(list) {
-  const amounts = list.map((item) => item.FinalPrice);
+  const amounts = list.map((item) => item.price);
   const total = amounts.reduce((sum, item) => sum + item, 0);
   return total;
 }
+
+// Add event listener to each remove button
+document.addEventListener("click", function(event) {
+  if (event.target.matches(".remove")) {
+    const itemId = event.target.dataset.id;
+    removeFromCart(itemId);
+  }
+});

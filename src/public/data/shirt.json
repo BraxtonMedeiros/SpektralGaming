@@ -1,0 +1,32 @@
+{
+    "shirts": [
+      {
+        "category": "shirt",
+        "id": 1,
+        "name": "White shirt with Spektral Logo",
+        "price": 19.99,
+        "img": "/images/shirts/white_shirt_logo.png"
+      },
+      {
+        "category": "shirt",
+        "id": 2,
+        "name": "White shirt with Spektral Alternate Logo",
+        "price": 23.99,
+        "img": "/images/shirts/white_shirt_logo2.png"
+      },
+      {
+        "category": "shirt",
+        "id": 3,
+        "name": "Black shirt with Spektral Logo",
+        "price": 19.99,
+        "img": "/images/shirts/black_shirt_logo.png"
+      },
+      {
+        "category": "shirt",
+        "id": 4,
+        "name": "Black shirt with Spektral Banner",
+        "price": 23.99,
+        "img": "/images/shirts/black_shirt_banner.png"
+      }
+    ]
+  }

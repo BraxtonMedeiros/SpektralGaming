@@ -1,0 +1,32 @@
+{
+    "sweats": [
+      {
+        "category": "sweats",
+        "id": 9,
+        "name": "Grey Sweats with Spektral Logo",
+        "price": 21.99,
+        "img": "/images/sweats/grey_sweats_logo.png"
+      },
+      {
+        "category": "sweats",
+        "id": 10,
+        "name": "Grey Sweats with Spektral banner",
+        "price": 23.99,
+        "img": "/images/sweats/grey_sweats_banner.png"
+      },
+      {
+        "category": "sweats",
+        "id": 11,
+        "name": "Black Sweats with Spektral Logo",
+        "price": 21.99,
+        "img": "/images/sweats/black_sweats_logo.png"
+      },
+      {
+        "category": "sweats",
+        "id": 12,
+        "name": "Black Sweats with Spektral Banner",
+        "price": 23.99,
+        "img": "/images/sweats/black_sweats_banner.png"
+      }
+    ]
+  }

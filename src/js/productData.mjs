@@ -16,10 +16,52 @@ export async function getData(category) {
   return data.Result;
 }
 
-export async function findProductById(id) {
-  const response = await fetch(baseURL + `product/${id}`);
-  const product = await convertToJson(response);
-  return product.Result;
+export async function getShirt() {
+  const response = await fetch(`/data/shirt.json`).then(r => r.json());
+  return response;
+}
+
+export async function getHoodie() {
+  const response = await fetch(`/data/hoodie.json`).then(r => r.json());
+  return response;
+}
+
+export async function getSweats() {
+  const response = await fetch(`/data/sweats.json`).then(r => r.json());
+  return response;
+}
+
+export async function getShorts() {
+  const response = await fetch(`/data/shorts.json`).then(r => r.json());
+  return response;
+}
+
+export async function findProductById(productId, category) {
+  let group;
+  switch (category) {
+    case "shirt":
+      group = await getShirt().then(data => data.shirts);
+      
+      return group.filter(d => d.id == productId)[0];
+      
+      case "hoodie":
+        group = await getHoodie().then(data => data.hoodie);
+      
+      return group.filter(d => d.id == productId)[0];
+      
+      case "sweats":
+        group = await getSweats().then(data => data.sweats);
+      
+      return group.filter(d => d.id == productId)[0];
+      
+      case "shorts":
+        group = await getShorts().then(data => data.shorts);
+      
+      return group.filter(d => d.id == productId)[0];
+  
+    default:
+      break;
+  }
 
 }
 

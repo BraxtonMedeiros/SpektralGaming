@@ -1,0 +1,32 @@
+{
+    "hoodie": [
+      {
+        "category": "hoodie",
+        "id": 5,
+        "name": "White hoodie with Spektral Logo",
+        "price": 30.99,
+        "img": "/images/hoodies/white_hoodie_logo.png"
+      },
+      {
+        "category": "hoodie",
+        "id": 6,
+        "name": "White hoodie with Spektral banner",
+        "price": 34.99,
+        "img": "/images/hoodies/white_hoodie_banner.png"
+      },
+      {
+        "category": "hoodie",
+        "id": 7,
+        "name": "Black hoodie with Spektral Logo",
+        "price": 30.99,
+        "img": "/images/hoodies/black_hoodie_logo.png"
+      },
+      {
+        "category": "hoodie",
+        "id": 8,
+        "name": "Black hoodie with Spektral Banner",
+        "price": 34.99,
+        "img": "/images/hoodies/black_hoodie_banner.png"
+      }
+    ]
+  }
